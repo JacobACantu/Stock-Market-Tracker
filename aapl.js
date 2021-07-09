@@ -1,3 +1,4 @@
+var url = 'https://cors-anywhere.herokuapp.com/https://www.styvio.com/api/'
 var rndmurl = 'https://cors-anywhere.herokuapp.com/https://www.styvio.com/api/btc'
 
 var rndmbtn = document.querySelector('#rndmbtn');
@@ -127,4 +128,20 @@ function msftStock(){
        $('#currentPrice').text(data.currentPrice);
        $('#stockImage').attr("src", data.logoURL);
 })
+}
+
+function openPage(){
+    var search = document.getElementById("searchText").value;
+    var searchURL = `https://cors-anywhere.herokuapp.com/https://www.styvio.com/api/${search}`
+    fetch(searchURL)
+    .then(searchStock)
+function searchStock(){
+    $.getJSON(searchURL)
+    .done(function(data){
+       $('#nameofStock').text(data.shortName);
+       $('#tickerSymbol').text(data.ticker);
+       $('#currentPrice').text(data.currentPrice);
+       $('#stockImage').attr("src", data.logoURL);
+})
+}
 }
